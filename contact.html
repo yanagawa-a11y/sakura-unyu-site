@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="桜運輸株式会社へのお問い合わせページ。輸送のご依頼・ご相談はこちらから。">
+<link rel="icon" type="image/png" href="assets/img/logo_sakura.png">
+<title>お問い合わせ｜桜運輸株式会社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=2">
+<style>
+.cform{max-width:720px;margin:0 auto}
+.cform .note{text-align:center;font-size:14.5px;color:#3c443f;margin-bottom:46px}
+.cform label{display:block;font-size:14px;font-weight:700;margin:26px 0 8px}
+.cform label .req{color:#c0392b;font-size:12px;margin-left:6px}
+.cform input[type=text],.cform input[type=tel],.cform input[type=email],.cform textarea{width:100%;border:1.5px solid #d8d7cd;border-radius:10px;background:#fff;padding:14px 16px;font-family:var(--sans);font-size:15px;transition:border-color .3s,box-shadow .3s}
+.cform input:focus,.cform textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(45,106,79,.14)}
+.cform textarea{min-height:180px;resize:vertical}
+.privacy{margin-top:44px;border:1.5px solid #d8d7cd;border-radius:12px;background:#fff;max-height:260px;overflow-y:auto;padding:24px 26px;font-size:12.5px;color:#4a524d;line-height:1.9}
+.privacy h3{font-size:13.5px;color:var(--green-deep);margin:18px 0 6px}
+.privacy h3:first-child{margin-top:0}
+.consent{margin-top:22px;display:flex;flex-direction:column;gap:10px;font-size:14px}
+.consent label{display:flex;align-items:center;gap:10px;margin:0;font-weight:500;cursor:pointer}
+.consent input{width:18px;height:18px;accent-color:var(--green)}
+.submitrow{text-align:center;margin-top:38px}
+.sent{display:none;margin-top:26px;text-align:center;background:rgba(45,106,79,.08);border:1.5px solid var(--green);border-radius:12px;padding:22px;font-size:14px;color:var(--green-deep);font-weight:500}
+</style>
+</head>
+<body>
+<div class="veil"></div>
+<div class="curtain" id="curtain"><span class="mark"><img src="assets/img/logo_sakura_white.png" alt="">桜運輸株式会社</span></div>
+
+<header class="header" id="header">
+  <a class="brand" href="index.html" data-transition><img src="assets/img/logo_sakura_green.png" alt="桜運輸のロゴ">桜運輸株式会社</a>
+  <nav class="gnav">
+    <a href="index.html" data-transition>TOP</a>
+    <a href="our_business.html" data-transition>事業紹介</a>
+    <a href="vehicle.html" data-transition>保有車両</a>
+    <a href="company.html" data-transition>会社概要</a>
+    <a href="recruit.html" data-transition>採用情報</a>
+    <a href="safety.html" data-transition>安全の取り組み</a>
+    <a href="news.html" data-transition>お知らせ</a>
+    <a class="cta" href="contact.html" data-transition><span>お問い合わせ</span></a>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-label="メニューを開く"><span class="bars"><span></span><span></span><span></span></span></button>
+</header>
+
+<div class="mnav" id="mnav">
+  <nav>
+    <a href="index.html" data-transition>TOP</a><a href="our_business.html" data-transition>事業紹介</a>
+    <a href="vehicle.html" data-transition>保有車両</a><a href="company.html" data-transition>会社概要</a>
+    <a href="recruit.html" data-transition>採用情報</a><a href="safety.html" data-transition>安全への取り組み</a>
+    <a href="news.html" data-transition>お知らせ</a><a href="contact.html" data-transition>お問い合わせ</a>
+  </nav>
+</div>
+
+<section class="pagehead">
+  <div class="bg" style="background-image:url('assets/img/office.jpg')"></div>
+  <div class="in">
+    <span class="en"><span>Contact Us</span></span>
+    <span class="ja">お問い合わせ</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <form class="cform rev" id="cform">
+      <p class="note">ご覧いただきありがとうございます。<br>2営業日以内にご連絡差し上げます。<br>※営業メールは申し訳ございませんが、お断りしております。</p>
+
+      <label>お名前<span class="req">*</span></label>
+      <input type="text" name="name" required>
+
+      <label>電話番号<span class="req">*</span></label>
+      <input type="tel" name="tel" required>
+
+      <label>メールアドレス<span class="req">*</span></label>
+      <input type="email" name="email" required>
+
+      <label>お問い合わせ内容<span class="req">*</span></label>
+      <textarea name="body" required></textarea>
+
+      <div class="privacy">
+        <p>桜運輸株式会社は、お客様にサービスを提供する上での個人情報の重要性に鑑み、安心してサービスをご利用いただける環境、体制を構築すべく、個人情報保護に関する方針を以下のとおり定め、個人情報の保護、管理、運営、利用を徹底いたします。</p>
+        <h3>第1条 法令・規範の遵守について</h3>
+        <p>当社は個人情報の取り扱いに関する法令、国が定める指針その他の規範を、常に最新状態に維持するとともにこれを遵守いたします。</p>
+        <h3>第2条 個人情報の取得について</h3>
+        <p>当社は利用目的を明確にした上で取得し、特定された利用目的の達成に必要な範囲内で、適正に個人情報を取り扱います。</p>
+        <h3>第3条 個人情報の利用目的について</h3>
+        <p>当社は、取得した個人情報をお知らせした利用目的以外に利用をいたしません。</p>
+        <h3>第4条 個人情報の安全管理について</h3>
+        <p>当社は、取得した個人情報について不正アクセス、破壊、紛失、漏えい、改ざん等を防止するため、必要かつ適切な安全管理措置を講じます。また、万が一の問題発生に対しては早急に再発防止のための是正を行います。</p>
+        <h3>第5条 個人情報の第三者への開示について</h3>
+        <p>当社は、個人情報の管理を厳重に行い、法令に基づく場合又はお客さまにご承諾いただいた場合を除き、第三者に対しデータを開示・提供することはいたしません。</p>
+        <h3>第6条 個人情報の委託について</h3>
+        <p>当社は、取得した個人情報の取り扱い・管理を外部へ委託する場合には、漏えい、および不正使用防止のために、契約により義務づけ、適切な管理を実施いたします。</p>
+        <h3>第7条 個人情報保護方針の変更について</h3>
+        <p>当社は、お客様の事前の了承を得ることなく本方針を随時変更することができるものとします。本方針の変更は、本サイト上での掲載後直ちに有効になるものとします。</p>
+        <h3>お問い合わせ</h3>
+        <p>当社の個人情報の取扱に関するお問い合わせは下記までご連絡ください。<br>〒498-0063　愛知県弥富市東末広九丁目51番地<br>TEL：0567-68-1166</p>
+      </div>
+
+      <div class="consent">
+        <label><input type="checkbox" id="read" required>上記 個人情報の取り扱いを読んだ</label>
+        <label><input type="checkbox" id="agree" required>個人情報の取り扱いに同意する</label>
+      </div>
+
+      <div class="submitrow">
+        <button type="submit" class="btn">入力内容を送信する</button>
+      </div>
+      <div class="sent" id="sent">
+        ※このページはデザイン確認用のデモのため、送信機能はまだ接続されていません。<br>
+        本公開時にフォーム送信サービス（Googleフォーム連携等）と接続します。
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <div class="name"><img src="assets/img/logo_sakura_white.png" alt="">桜運輸株式会社</div>
+      <address>〒498-0063<br>愛知県弥富市東末広九丁目51番地</address>
+    </div>
+    <nav>
+      <a href="index.html" data-transition>TOP</a><a href="our_business.html" data-transition>事業紹介</a>
+      <a href="vehicle.html" data-transition>保有車両</a><a href="company.html" data-transition>会社概要</a>
+      <a href="recruit.html" data-transition>採用情報</a><a href="safety.html" data-transition>安全への取り組み</a>
+      <a href="news.html" data-transition>お知らせ</a><a href="contact.html" data-transition>お問い合わせ</a>
+    </nav>
+  </div>
+  <div class="copy">© 2026 桜運輸株式会社</div>
+</footer>
+
+<script src="assets/site.js?v=2"></script>
+<script>
+// デモ用：送信ボタンで案内を表示（本公開時にフォームサービスへ差し替え）
+document.getElementById('cform').addEventListener('submit', e => {
+  e.preventDefault();
+  document.getElementById('sent').style.display = 'block';
+  document.getElementById('sent').scrollIntoView({behavior:'smooth', block:'center'});
+});
+</script>
+</body>
+</html>

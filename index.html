@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="愛知県弥富市の桜運輸株式会社。海上コンテナ輸送を中心に、特殊輸送・トレーラー輸送・ミキサー輸送まで、安全・確実な輸送サービスを提供します。">
+<link rel="icon" type="image/png" href="assets/img/logo_sakura.png">
+<title>桜運輸株式会社｜愛知県弥富市の海上コンテナ・貨物輸送</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#2d6a4f;
+  --green-deep:#1b4332;
+  --ink:#222825;
+  --gray:#6b746e;
+  --bg:#fbfbf9;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+  --en:"Oswald",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:2;letter-spacing:.04em;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* ============ 読み込み時のオープニング演出 ============
+   写真7枚の高速モンタージュ → 桜マーク＋社名の文字アニメ → 上へスライドして本編へ
+   （--t はロゴ演出の開始時刻。2回目以降は .op-short で写真を飛ばして短縮再生） */
+.opening{--t:3.85s;position:fixed;inset:0;z-index:1000;background:var(--green-deep);display:grid;place-items:center;overflow:hidden;cursor:pointer;transition:transform .9s cubic-bezier(.77,0,.18,1) .15s}
+.opening.done{transform:translateY(-100%)}
+.op-slides{position:absolute;inset:0}
+.op-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:op-cut .62s cubic-bezier(.3,0,.4,1) both}
+.op-slides::after{content:"";position:absolute;inset:0;background:rgba(10,25,17,.3)}
+.op-slides img:nth-child(1){animation-delay:.15s}
+.op-slides img:nth-child(2){animation-delay:.65s}
+.op-slides img:nth-child(3){animation-delay:1.15s}
+.op-slides img:nth-child(4){animation-delay:1.65s}
+.op-slides img:nth-child(5){animation-delay:2.15s}
+.op-slides img:nth-child(6){animation-delay:2.65s}
+.op-slides img:nth-child(7){animation-delay:3.15s}
+@keyframes op-cut{0%{opacity:0;transform:scale(1.07)}12%{opacity:1}88%{opacity:1;transform:scale(1)}100%{opacity:0}}
+.op-brand{position:relative;z-index:2;text-align:center;color:#fff}
+.op-mark{width:clamp(72px,10vw,110px);height:auto;margin:0 auto 18px;opacity:0;animation:op-mark .8s cubic-bezier(.34,1.45,.4,1) calc(var(--t)) both}
+@keyframes op-mark{from{opacity:0;transform:scale(.2) rotate(-150deg)}to{opacity:1;transform:scale(1) rotate(0deg)}}
+.op-brand .en{font-family:var(--en);font-size:13px;letter-spacing:.55em;display:block;margin-bottom:12px;color:rgba(255,255,255,.75);opacity:0;animation:op-en 1s calc(var(--t) + .85s) both}
+@keyframes op-en{from{opacity:0;letter-spacing:.95em}to{opacity:1;letter-spacing:.55em}}
+.op-brand .ja{font-size:clamp(24px,3.6vw,38px);font-weight:700;letter-spacing:.18em;display:block;overflow:hidden}
+.op-brand .ja i{font-style:normal;display:inline-block;transform:translateY(120%);animation:op-rise .7s cubic-bezier(.22,1,.36,1) both}
+.op-brand .ja i:nth-child(1){animation-delay:calc(var(--t) + .30s)}
+.op-brand .ja i:nth-child(2){animation-delay:calc(var(--t) + .37s)}
+.op-brand .ja i:nth-child(3){animation-delay:calc(var(--t) + .44s)}
+.op-brand .ja i:nth-child(4){animation-delay:calc(var(--t) + .51s)}
+.op-brand .ja i:nth-child(5){animation-delay:calc(var(--t) + .58s)}
+.op-brand .ja i:nth-child(6){animation-delay:calc(var(--t) + .65s)}
+.op-brand .ja i:nth-child(7){animation-delay:calc(var(--t) + .72s)}
+@keyframes op-rise{to{transform:translateY(0)}}
+.op-brand .bar{width:0;height:2px;background:#fff;margin:20px auto 0;animation:op-bar .9s cubic-bezier(.22,1,.36,1) calc(var(--t) + 1.15s) both}
+@keyframes op-bar{to{width:150px}}
+.opening.done .op-brand{animation:op-out .4s forwards}
+@keyframes op-out{to{opacity:0}}
+.op-skip{position:absolute;right:26px;bottom:22px;z-index:3;font-family:var(--en);font-size:10px;letter-spacing:.3em;color:rgba(255,255,255,.55);opacity:0;animation:op-en 1s 1.2s forwards}
+/* 同一セッション2回目以降：写真モンタージュを省略した短縮版 */
+.opening.op-short{--t:.15s}
+.opening.op-short .op-slides{display:none}
+
+/* ============ ページ遷移カーテン ============ */
+.curtain{position:fixed;inset:0;z-index:990;pointer-events:none;display:grid;place-items:center}
+.curtain::before{content:"";position:absolute;inset:0;background:var(--green-deep);transform:scaleY(0);transform-origin:bottom}
+.curtain .mark{position:relative;color:#fff;font-size:26px;font-weight:700;letter-spacing:.3em;opacity:0}
+.curtain.play{pointer-events:auto}
+.curtain.play::before{animation:cur-in .55s cubic-bezier(.77,0,.18,1) forwards,cur-out .55s cubic-bezier(.77,0,.18,1) .75s forwards}
+.curtain.play .mark{animation:mark-in .4s .35s forwards,op-out .3s .85s forwards}
+@keyframes cur-in{to{transform:scaleY(1);transform-origin:bottom}}
+@keyframes cur-out{from{transform:scaleY(1);transform-origin:top}to{transform:scaleY(0);transform-origin:top}}
+@keyframes mark-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ============ ヘッダー（元と同じ白ヘッダー＋動きだけ追加） ============ */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;background:#fff;height:76px;padding-left:32px;box-shadow:0 1px 0 rgba(0,0,0,.06);transform:translateY(-100%);transition:height .35s}
+body.loaded .header{animation:hd-in .7s cubic-bezier(.22,1,.36,1) .75s forwards}
+@keyframes hd-in{to{transform:none}}
+.header.shrink{height:62px}
+.brand{font-size:19px;font-weight:700;letter-spacing:.06em}
+.gnav{display:flex;align-items:center;height:100%}
+.gnav a:not(.cta){font-size:14px;font-weight:700;padding:0 16px;position:relative;height:100%;display:flex;align-items:center;transition:color .3s}
+.gnav a:not(.cta)::after{content:"";position:absolute;left:16px;right:16px;bottom:16px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:right;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.gnav a:not(.cta):hover{color:var(--green)}
+.gnav a:not(.cta):hover::after{transform:scaleX(1);transform-origin:left}
+.gnav .cta{display:flex;align-items:center;height:100%;background:var(--green);color:#fff;font-weight:700;padding:0 34px;margin-left:14px;position:relative;overflow:hidden}
+.gnav .cta span{position:relative;z-index:1}
+.gnav .cta::before{content:"";position:absolute;inset:0;background:var(--green-deep);transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.gnav .cta:hover::before{transform:scaleX(1);transform-origin:left}
+@media(max-width:1080px){.gnav a:not(.cta){display:none}}
+
+/* ============ ハンバーガーメニュー（全画面ドロワー） ============ */
+.menu-btn{width:76px;height:100%;flex:0 0 auto;background:var(--green-deep);border:none;cursor:pointer;position:relative;z-index:210;display:grid;place-items:center}
+.menu-btn .bars{width:26px;height:18px;position:relative}
+.menu-btn .bars span{position:absolute;left:0;width:100%;height:2px;background:#fff;border-radius:2px;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .25s,top .35s}
+.menu-btn .bars span:nth-child(1){top:0}
+.menu-btn .bars span:nth-child(2){top:8px}
+.menu-btn .bars span:nth-child(3){top:16px}
+body.menu-open .menu-btn .bars span:nth-child(1){top:8px;transform:rotate(45deg)}
+body.menu-open .menu-btn .bars span:nth-child(2){opacity:0}
+body.menu-open .menu-btn .bars span:nth-child(3){top:8px;transform:rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:205;background:var(--green-deep);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .45s}
+body.menu-open .mnav{opacity:1;pointer-events:auto}
+.mnav nav{display:grid;grid-template-columns:repeat(2,auto);gap:30px 72px;font-size:18px;font-weight:700;color:#fff;letter-spacing:.06em}
+.mnav nav a{opacity:0;transform:translateY(16px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1),color .3s}
+body.menu-open .mnav nav a{opacity:1;transform:none}
+.mnav nav a:nth-child(2n){transition-delay:.08s}
+.mnav nav a:hover{color:#9fd4b4}
+@media(max-width:480px){.mnav nav{gap:24px 44px;font-size:16px}}
+
+/* ============ ヒーロー（元と同じ写真・同じコピー） ============ */
+.hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:center}
+.hero__bg{position:absolute;inset:0;background:url("assets/img/slide1.jpg") center/cover no-repeat;transform:scale(1.12)}
+body.loaded .hero__bg{animation:kenburns 8s cubic-bezier(.22,1,.36,1) .6s forwards}
+@keyframes kenburns{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(15,30,22,.5),rgba(15,30,22,.12) 60%)}
+.hero__inner{position:relative;z-index:2;color:#fff;padding:60px 40px 0;max-width:1220px;margin:0 auto;width:100%}
+.hero h1{font-size:clamp(30px,4.8vw,58px);font-weight:700;line-height:1.6;letter-spacing:.06em;text-shadow:0 2px 22px rgba(0,0,0,.4)}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line span{display:inline-block;transform:translateY(112%);}
+body.loaded .hero h1 .line:nth-child(1) span{animation:rise 1s cubic-bezier(.22,1,.36,1) 1.05s forwards}
+body.loaded .hero h1 .line:nth-child(2) span{animation:rise 1s cubic-bezier(.22,1,.36,1) 1.22s forwards}
+@keyframes rise{to{transform:translateY(0)}}
+.hero__co{margin-top:26px;font-size:clamp(16px,1.8vw,22px);font-weight:700;letter-spacing:.14em;opacity:0}
+body.loaded .hero__co{animation:fade-up 1s 1.6s forwards}
+@keyframes fade-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hero__scroll{position:absolute;left:40px;bottom:0;z-index:3;color:#fff;font-family:var(--en);font-size:10px;letter-spacing:.3em;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0}
+body.loaded .hero__scroll{animation:fade-up 1s 2s forwards}
+.hero__scroll::after{content:"";width:1px;height:60px;background:linear-gradient(#fff,transparent);animation:scr 2.2s 2s infinite}
+@keyframes scr{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ============ 共通 ============ */
+.section{padding:110px 40px}
+.wrap{max-width:1100px;margin:0 auto}
+.label{text-align:center;margin-bottom:54px}
+.label .en{font-family:var(--en);font-size:clamp(30px,3.4vw,44px);letter-spacing:.14em;color:var(--green);display:block;line-height:1.2}
+.label .ja{font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--gray);display:inline-block;margin-top:8px;position:relative;padding-top:14px}
+.label .ja::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:36px;height:2px;background:var(--green)}
+.more{display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--green);padding:16px 40px;border-radius:999px;position:relative;overflow:hidden;transition:box-shadow .3s,transform .3s}
+.more:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(45,106,79,.35)}
+.more .ic{display:inline-flex;transition:transform .3s}
+.more:hover .ic{transform:translateX(5px)}
+.more svg{width:15px;height:15px}
+/* スクロール連動表示 */
+.rev{opacity:0;transform:translateY(38px);transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1)}
+.rev.on{opacity:1;transform:none}
+.rev.d1{transition-delay:.14s}.rev.d2{transition-delay:.28s}.rev.d3{transition-delay:.42s}
+
+/* ============ メッセージ（元の文章そのまま） ============ */
+.message{text-align:center;background:#fff}
+.message h2{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:.1em;line-height:1.8;margin-bottom:36px;color:var(--green-deep)}
+.message h2 .u{background:linear-gradient(transparent 72%,rgba(45,106,79,.18) 72%)}
+.message p{font-size:15px;color:#3c443f;max-width:760px;margin:0 auto 1.8em}
+
+/* ============ Reason（元の3項目そのまま） ============ */
+.reason{background:var(--bg)}
+.reason__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-bottom:54px}
+.rcard{background:#fff;border-radius:14px;padding:46px 30px 40px;text-align:center;box-shadow:0 10px 30px rgba(34,40,37,.06);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s}
+.rcard:hover{transform:translateY(-10px);box-shadow:0 24px 48px rgba(34,40,37,.12)}
+.rcard .ic{width:64px;height:64px;margin:0 auto 22px;border-radius:50%;background:rgba(45,106,79,.1);display:grid;place-items:center;color:var(--green);transition:background .4s,color .4s,transform .5s}
+.rcard:hover .ic{background:var(--green);color:#fff;transform:rotateY(180deg)}
+.rcard .ic svg{width:28px;height:28px}
+.rcard h3{font-size:18.5px;font-weight:700;line-height:1.75;margin-bottom:16px}
+.rcard p{font-size:13.5px;color:#4a524d;text-align:left}
+@media(max-width:900px){.reason__grid{grid-template-columns:1fr}}
+
+/* ============ Our Features（元の文章そのまま・番号付き） ============ */
+.features{background:#fff}
+.features .lead{text-align:center;font-size:15px;color:#3c443f;max-width:720px;margin:-20px auto 70px}
+.feature{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:90px}
+.feature:last-child{margin-bottom:0}
+.feature .img{overflow:hidden;border-radius:14px;position:relative}
+.feature .img img{aspect-ratio:16/10.5;object-fit:cover;transition:transform 1.1s cubic-bezier(.22,1,.36,1)}
+.feature:hover .img img{transform:scale(1.06)}
+.feature.alt .img{order:2}
+.feature .no{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.feature .no .n{font-family:var(--en);font-size:44px;color:var(--green);line-height:1}
+.feature .no::after{content:"";flex:0 0 46px;height:2px;background:var(--green)}
+.feature h3{font-size:clamp(20px,2.2vw,26px);font-weight:700;line-height:1.7;margin-bottom:18px}
+.feature p{font-size:14.5px;color:#3c443f;margin-bottom:1.4em}
+@media(max-width:900px){.feature{grid-template-columns:1fr;gap:30px}.feature.alt .img{order:0}}
+
+/* ============ Service / Company / Recruit（元の構成＝紹介文＋リンクのみ） ============ */
+.banner{position:relative;color:#fff;overflow:hidden}
+.banner .bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.08);transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
+.banner:hover .bg{transform:scale(1.02)}
+.banner::after{content:"";position:absolute;inset:0;background:rgba(18,38,28,.66)}
+.banner .in{position:relative;z-index:2;text-align:center;padding:110px 40px;max-width:820px;margin:0 auto}
+.banner .label .en{color:#fff}
+.banner .label .ja{color:rgba(255,255,255,.8)}
+.banner .label .ja::before{background:#fff}
+.banner p{font-size:15px;margin-bottom:42px;color:rgba(255,255,255,.94)}
+.banner .more{background:#fff;color:var(--green-deep)}
+.banner .more:hover{box-shadow:0 12px 26px rgba(0,0,0,.3)}
+.banner--service .bg{background-image:url("assets/img/top_container.jpg")}
+.banner--company .bg{background-image:url("assets/img/office.jpg")}
+.banner--recruit .bg{background-image:url("assets/img/top_driver127.jpg");background-position:center 30%}
+.duo2{display:grid;grid-template-columns:1fr 1fr}
+.duo2 .banner .in{padding:90px 40px}
+@media(max-width:820px){.duo2{grid-template-columns:1fr}}
+
+/* ============ Contact（元の内容そのまま） ============ */
+.contact{background:#fff;text-align:center}
+.contact p.lead{max-width:600px;margin:0 auto 46px;font-size:15px;color:#3c443f}
+.contact__btns{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:18px 46px;font-size:15px;font-weight:700;letter-spacing:.08em;border-radius:999px;transition:transform .3s,box-shadow .3s,background .3s,color .3s}
+.btn:hover{transform:translateY(-3px)}
+.btn--fill{background:var(--green);color:#fff;box-shadow:0 10px 24px rgba(45,106,79,.3)}
+.btn--fill:hover{background:var(--green-deep)}
+.btn--line{border:1.5px solid var(--green);color:var(--green)}
+.btn--line:hover{background:rgba(45,106,79,.07)}
+.btn svg{width:17px;height:17px}
+
+/* ============ フッター（元の項目そのまま） ============ */
+.footer{background:var(--green-deep);color:rgba(255,255,255,.9);padding:76px 40px 34px}
+.footer .wrap{display:flex;justify-content:space-between;gap:44px;flex-wrap:wrap}
+.footer .name{font-size:20px;font-weight:700;color:#fff;margin-bottom:12px}
+.footer address{font-style:normal;font-size:13.5px;line-height:2.1;color:rgba(255,255,255,.75)}
+.footer nav{display:grid;grid-template-columns:repeat(2,auto);gap:8px 44px;font-size:13.5px}
+.footer nav a{position:relative;transition:opacity .3s}
+.footer nav a:hover{opacity:.7}
+.footer .copy{margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.15);text-align:center;font-size:11.5px;letter-spacing:.1em;color:rgba(255,255,255,.55)}
+
+/* スマホでヘッダーが折り返さないよう微調整 */
+@media(max-width:520px){.brand{font-size:14.5px}.gnav .cta{padding:0 16px;font-size:12.5px}.header{padding-left:16px}.menu-btn{width:60px}}
+
+/* ヘッダーロゴ＋ボタン密着レイアウト */
+.header{justify-content:flex-start}
+.gnav{margin-left:auto}
+.brand{display:flex;align-items:center;gap:9px}
+.brand img{width:28px;height:auto;flex:0 0 auto}
+
+/* スマホ: ヒーローの見出しがフレーズ単位で1行に収まるよう調整 */
+@media(max-width:480px){
+  .hero__inner{padding:60px 22px 0}
+  .hero h1{font-size:clamp(19px,5.9vw,26px);line-height:1.8;letter-spacing:.04em}
+  .hero__co{font-size:14px}
+  .hero__scroll{left:22px}
+}
+
+/* メニュー展開中はヘッダー（×ボタン含む）を前面に出す */
+body.menu-open .header{z-index:220}
+/* カーテン・フッターの白ロゴ */
+.curtain .mark{display:flex;flex-direction:column;align-items:center;gap:16px}
+.curtain .mark img{width:54px;height:auto}
+.footer .name{display:flex;align-items:center;gap:10px}
+.footer .name img{width:26px;height:auto}
+</style>
+</head>
+<body>
+
+<!-- オープニング演出（写真モンタージュ→ロゴ。クリックでスキップ） -->
+<div class="opening" id="opening" title="クリックでスキップ">
+  <div class="op-slides" aria-hidden="true">
+    <img src="assets/img/slide1.jpg" alt="">
+    <img src="assets/img/top_container.jpg" alt="">
+    <img src="assets/img/top_trucks1.jpg" alt="">
+    <img src="assets/img/top_driver113.jpg" alt="">
+    <img src="assets/img/slide3.jpg" alt="">
+    <img src="assets/img/slide2.jpg" alt="">
+    <img src="assets/img/office.jpg" alt="">
+  </div>
+  <div class="op-brand">
+    <img class="op-mark" src="assets/img/logo_sakura_white.png" alt="桜運輸のロゴマーク">
+    <span class="en">SAKURA TRANSPORT</span>
+    <span class="ja"><i>桜</i><i>運</i><i>輸</i><i>株</i><i>式</i><i>会</i><i>社</i></span>
+    <div class="bar"></div>
+  </div>
+  <span class="op-skip">CLICK TO SKIP</span>
+</div>
+
+<!-- ページ遷移カーテン -->
+<div class="curtain" id="curtain"><span class="mark"><img src="assets/img/logo_sakura_white.png" alt="">桜運輸株式会社</span></div>
+
+<header class="header" id="header">
+  <a class="brand" href="index.html" data-transition><img src="assets/img/logo_sakura_green.png" alt="桜運輸のロゴ">桜運輸株式会社</a>
+  <nav class="gnav">
+    <a href="index.html" data-transition>TOP</a>
+    <a href="our_business.html" data-transition>事業紹介</a>
+    <a href="vehicle.html" data-transition>保有車両</a>
+    <a href="company.html" data-transition>会社概要</a>
+    <a href="recruit.html" data-transition>採用情報</a>
+    <a href="safety.html" data-transition>安全の取り組み</a>
+    <a href="news.html" data-transition>お知らせ</a>
+    <a class="cta" href="contact.html" data-transition><span>お問い合わせ</span></a>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-label="メニューを開く"><span class="bars"><span></span><span></span><span></span></span></button>
+</header>
+
+<div class="mnav" id="mnav">
+  <nav>
+    <a href="index.html" data-transition>TOP</a><a href="our_business.html" data-transition>事業紹介</a>
+    <a href="vehicle.html" data-transition>保有車両</a><a href="company.html" data-transition>会社概要</a>
+    <a href="recruit.html" data-transition>採用情報</a><a href="safety.html" data-transition>安全への取り組み</a>
+    <a href="news.html" data-transition>お知らせ</a><a href="contact.html" data-transition>お問い合わせ</a>
+  </nav>
+</div>
+
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__inner">
+    <h1>
+      <span class="line"><span>より良い輸送を創造する</span></span>
+      <span class="line"><span>リーディングカンパニーへ</span></span>
+    </h1>
+    <div class="hero__co">桜運輸株式会社</div>
+  </div>
+  <div class="hero__scroll">SCROLL</div>
+</section>
+
+<section class="section message">
+  <div class="wrap">
+    <h2 class="rev"><span class="u">確実に運ぶ。その先の信頼まで。</span></h2>
+    <p class="rev d1">桜運輸株式会社は、安全・確実・柔軟な輸送を通じて、地域社会とお客様のビジネスを支え続けています。</p>
+    <p class="rev d2">物流は、ただモノを運ぶ仕事ではありません。<br>その一つひとつに、大切な想いと責任が込められています。</p>
+    <p class="rev d3">私たちは、その価値を理解し、「確実に届ける」という当たり前を、<br>当たり前以上の品質で実現し続けます。</p>
+  </div>
+</section>
+
+<section class="section reason">
+  <div class="wrap">
+    <div class="label rev"><span class="en">Reason</span><span class="ja">選ばれる理由</span></div>
+    <div class="reason__grid">
+      <div class="rcard rev">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>安全を最優先にした<br>輸送体制</h3>
+        <p>無事故・無違反を最優先に、日々の点検や教育を徹底。<br>お客様の安全基準にも柔軟に対応し、安心して任せていただける輸送を実現しています。</p>
+      </div>
+      <div class="rcard rev d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h1"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+        <h3>多様な輸送ニーズに<br>対応する車両力</h3>
+        <p>海上コンテナから大型トレーラー、低床車両まで幅広く対応。<br>荷物に応じた最適な車両で、柔軟かつ確実な輸送を実現しています。</p>
+      </div>
+      <div class="rcard rev d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><path d="M22 2 12 12"/></svg></div>
+        <h3>経験と実績に<br>裏打ちされた信頼</h3>
+        <p>昭和42年の創業以来、専門性の高い輸送で実績を積み重ねてきました。<br>長年培った経験と信頼で、高品質な輸送サービスを提供しています。</p>
+      </div>
+    </div>
+    <div class="rev" style="text-align:center">
+      <a class="more" href="reason.html" data-transition>選ばれる理由をみる
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section features">
+  <div class="wrap">
+    <div class="label rev"><span class="en">Our Features</span><span class="ja">私たちの強み</span></div>
+    <p class="lead rev d1">私たちの強みは、高い技術力と丁寧なサービスにあります。<br>安全を最優先に、経験豊富な人材と充実した車両体制で、多様な輸送ニーズにお応えしています。</p>
+
+    <div class="feature">
+      <div class="img rev"><img src="assets/img/top_training.jpg" alt="安全を最優先にした輸送体制（社内安全教育の様子）"></div>
+      <div class="rev d1">
+        <div class="no"><span class="n">1</span></div>
+        <h3>安全を最優先にした輸送体制</h3>
+        <p>当社では「無事故・無違反」を最優先とし、すべての業務において安全を徹底しています。日々の点検や運行管理、教育体制の強化を通じて、高い安全意識を維持しています。</p>
+        <p>お客様の安全基準にも柔軟に対応し、安心して任せていただける輸送品質を実現しています。</p>
+      </div>
+    </div>
+
+    <div class="feature alt">
+      <div class="img rev"><img src="assets/img/top_trucks1.jpg" alt="多様な輸送ニーズに対応する車両力（保有車両の並び）"></div>
+      <div class="rev d1">
+        <div class="no"><span class="n">2</span></div>
+        <h3>多様な輸送ニーズに対応する車両力</h3>
+        <p>海上コンテナ輸送をはじめ、一般貨物トレーラー輸送や大型トラック輸送、さらに低床トレーラーによる特殊貨物輸送まで、幅広いニーズに対応しています。</p>
+        <p>全9種類のシャーシや大型ロングトレーラーなど、充実した車両ラインナップにより、サイズや形状の異なる多様な荷物にも柔軟に対応可能です。</p>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="img rev"><img src="assets/img/slide2.jpg" alt="経験と実績に裏打ちされた信頼（名古屋港のコンテナターミナル）"></div>
+      <div class="rev d1">
+        <div class="no"><span class="n">3</span></div>
+        <h3>経験と実績に<br>裏打ちされた信頼</h3>
+        <p>昭和42年の創業以来、印刷機械輸送からスタートし、現在では海上コンテナや工作機械など専門性の高い輸送にも対応。日本を代表するメーカー様の輸送も担うなど、長年にわたり実績と信頼を積み重ねてきました。その経験の蓄積が、確かな品質と対応力につながっています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="banner banner--service">
+  <div class="bg"></div>
+  <div class="in">
+    <div class="label rev"><span class="en">Service</span><span class="ja">サービス内容</span></div>
+    <p class="rev d1">長年培ってきたノウハウと安全管理体制のもと、<br>多様なニーズに柔軟に対応した輸送サービスを提供しています。</p>
+    <div class="rev d2">
+      <a class="more" href="our_business.html" data-transition>サービス内容をみる
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="duo2">
+  <div class="banner banner--company">
+    <div class="bg"></div>
+    <div class="in">
+      <div class="label rev"><span class="en">Company</span><span class="ja">会社概要</span></div>
+      <p class="rev d1">会社概要や代表挨拶など、桜運輸株式会社の基本情報をご紹介します。</p>
+      <div class="rev d2">
+        <a class="more" href="company.html" data-transition>会社について知る
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="banner banner--recruit">
+    <div class="bg"></div>
+    <div class="in">
+      <div class="label rev"><span class="en">Recruit</span><span class="ja">採用情報</span></div>
+      <p class="rev d1">桜運輸株式会社では、共に働く仲間を募集しています。<br>安全を大切にしながら、やりがいを持って働ける環境です。<br>詳しくは採用情報をご覧ください。</p>
+      <div class="rev d2">
+        <a class="more" href="recruit.html" data-transition>採用情報はこちら
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="label rev"><span class="en">Contact</span><span class="ja">お問い合わせ</span></div>
+  <p class="lead rev d1">サービスに関するご依頼や、ご相談などございましたら、こちらからお気軽にお問い合わせください。</p>
+  <div class="contact__btns rev d2">
+    <a class="btn btn--fill" href="contact.html" data-transition>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="m2 7 10 6L22 7"/></svg>
+      お問い合わせ
+    </a>
+    <a class="btn btn--line" href="tel:0567681166">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
+      0567-68-1166
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <div class="name"><img src="assets/img/logo_sakura_white.png" alt="">桜運輸株式会社</div>
+      <address>〒498-0063<br>愛知県弥富市東末広九丁目51番地</address>
+    </div>
+    <nav>
+      <a href="index.html" data-transition>TOP</a><a href="our_business.html" data-transition>事業紹介</a>
+      <a href="vehicle.html" data-transition>保有車両</a><a href="company.html" data-transition>会社概要</a>
+      <a href="recruit.html" data-transition>採用情報</a><a href="safety.html" data-transition>安全への取り組み</a>
+      <a href="news.html" data-transition>お知らせ</a><a href="contact.html" data-transition>お問い合わせ</a>
+    </nav>
+  </div>
+  <div class="copy">© 2026 桜運輸株式会社</div>
+</footer>
+
+<script>
+// ===== オープニング =====
+// 初回：写真モンタージュ→ロゴ（約6秒）／同一セッション2回目以降：ロゴのみの短縮版
+// クリックでいつでもスキップできる
+const opening = document.getElementById('opening');
+const opSeen = sessionStorage.getItem('sakuraOpSeen');
+if (opSeen) opening.classList.add('op-short');
+sessionStorage.setItem('sakuraOpSeen', '1');
+const opFinish = () => {
+  if (document.body.classList.contains('loaded')) return;
+  opening.classList.add('done');
+  document.body.classList.add('loaded');
+};
+const opTimer = setTimeout(opFinish, opSeen ? 2400 : 6300);
+opening.addEventListener('click', () => { clearTimeout(opTimer); opFinish(); });
+
+// ===== ハンバーガーメニューの開閉 =====
+document.getElementById('menuBtn').addEventListener('click', () => {
+  document.body.classList.toggle('menu-open');
+});
+
+// メニューの背景タップでも閉じる（リンク以外の場所）
+document.getElementById('mnav')?.addEventListener('click', e => {
+  if (e.target.tagName !== 'A') document.body.classList.remove('menu-open');
+});
+
+// ===== ヘッダー：スクロールで少し縮む =====
+const header = document.getElementById('header');
+addEventListener('scroll', () => header.classList.toggle('shrink', scrollY > 80), {passive:true});
+
+// ===== スクロール連動のふわっと表示 =====
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+}), {threshold:.16});
+document.querySelectorAll('.rev').forEach(el => io.observe(el));
+
+// ===== ページ遷移カーテン：カーテンが閉じきったタイミングで実際に遷移する =====
+const curtain = document.getElementById('curtain');
+document.querySelectorAll('a[data-transition]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:')) return;
+    e.preventDefault();
+    if (curtain.classList.contains('play')) return;
+    curtain.classList.add('play');
+    setTimeout(() => { location.href = href; }, 620);
+  });
+});
+
+// ブラウザの「戻る」でキャッシュ復元されたときにカーテンを初期化
+window.addEventListener('pageshow', e => {
+  if (e.persisted) curtain.classList.remove('play');
+});
+</script>
+</body>
+</html>
