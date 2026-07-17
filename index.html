@@ -9,6 +9,48 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+<!-- ▼SEO：ドメイン確定後、https://sakura-unyu.co.jp を実ドメインに一括置換してください -->
+<link rel="canonical" href="https://sakura-unyu.co.jp/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="桜運輸株式会社">
+<meta property="og:title" content="桜運輸株式会社｜愛知県弥富市の海上コンテナ・貨物輸送">
+<meta property="og:description" content="愛知県弥富市の桜運輸株式会社。海上コンテナ輸送を中心に、特殊輸送・トレーラー輸送・ミキサー輸送まで、安全・確実な輸送サービスを提供します。">
+<meta property="og:url" content="https://sakura-unyu.co.jp/">
+<meta property="og:image" content="https://sakura-unyu.co.jp/assets/img/slide1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://sakura-unyu.co.jp/#business",
+  "name": "桜運輸株式会社",
+  "alternateName": "SAKURA TRANSPORT",
+  "url": "https://sakura-unyu.co.jp/",
+  "logo": "https://sakura-unyu.co.jp/assets/img/logo_sakura.png",
+  "image": "https://sakura-unyu.co.jp/assets/img/slide1.jpg",
+  "telephone": "+81-567-68-1166",
+  "foundingDate": "1967-05",
+  "description": "愛知県弥富市の運送会社。海上コンテナ輸送を中心に、特殊輸送・トレーラー輸送・コンクリートミキサー輸送まで、安全・確実な輸送サービスを提供します。",
+  "address": {
+    "@type": "PostalAddress",
+    "postalCode": "498-0063",
+    "addressRegion": "愛知県",
+    "addressLocality": "弥富市",
+    "streetAddress": "東末広九丁目51番地",
+    "addressCountry": "JP"
+  },
+  "areaServed": ["東海", "関東", "関西"],
+  "knowsAbout": ["海上コンテナ輸送", "トレーラー輸送", "一般貨物輸送", "コンクリートミキサー輸送"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "桜運輸株式会社",
+  "url": "https://sakura-unyu.co.jp/"
+}
+</script>
 <style>
 :root{
   --green:#2d6a4f;
@@ -250,6 +292,19 @@ body.menu-open .header{z-index:220}
 .curtain .mark img{width:54px;height:auto}
 .footer .name{display:flex;align-items:center;gap:10px}
 .footer .name img{width:26px;height:auto}
+
+/* ============ トップのお知らせ（新着） ============ */
+.news{background:#fff}
+.hnews{display:flex;align-items:center;gap:18px;max-width:820px;margin:0 auto;padding:24px 24px;border:1px solid #e3e2da;border-radius:12px;background:var(--bg);transition:box-shadow .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1),border-color .35s}
+.hnews:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(34,40,37,.09);border-color:transparent}
+.hnews__date{font-family:var(--en);font-size:14px;letter-spacing:.08em;color:var(--gray);flex:0 0 auto}
+.hnews__cat{font-size:11px;font-weight:700;color:var(--green);background:rgba(45,106,79,.1);border-radius:999px;padding:3px 14px;flex:0 0 auto}
+.hnews__ttl{font-size:15px;font-weight:500;line-height:1.6;flex:1 1 auto;transition:color .3s}
+.hnews:hover .hnews__ttl{color:var(--green)}
+.hnews__arw{color:var(--green);flex:0 0 auto;display:flex;transition:transform .3s}
+.hnews:hover .hnews__arw{transform:translateX(4px)}
+.hnews__arw svg{width:18px;height:18px}
+@media(max-width:640px){.hnews{flex-wrap:wrap;gap:10px 14px}.hnews__ttl{flex:1 1 100%;order:3}}
 </style>
 </head>
 <body>
@@ -426,6 +481,23 @@ body.menu-open .header{z-index:220}
   </div>
 </section>
 
+<section class="section news">
+  <div class="wrap">
+    <div class="label rev"><span class="en">News</span><span class="ja">お知らせ</span></div>
+    <a class="hnews rev d1" href="news/2025-03-10-website-open.html" data-transition>
+      <span class="hnews__date">2025.03.10</span>
+      <span class="hnews__cat">お知らせ</span>
+      <span class="hnews__ttl">ホームページを公開しました</span>
+      <span class="hnews__arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+    <div class="rev d2" style="text-align:center;margin-top:44px">
+      <a class="more" href="news.html" data-transition>お知らせ一覧をみる
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section contact" id="contact">
   <div class="label rev"><span class="en">Contact</span><span class="ja">お問い合わせ</span></div>
   <p class="lead rev d1">サービスに関するご依頼や、ご相談などございましたら、こちらからお気軽にお問い合わせください。</p>
@@ -452,6 +524,7 @@ body.menu-open .header{z-index:220}
       <a href="vehicle.html" data-transition>保有車両</a><a href="company.html" data-transition>会社概要</a>
       <a href="recruit.html" data-transition>採用情報</a><a href="safety.html" data-transition>安全への取り組み</a>
       <a href="news.html" data-transition>お知らせ</a><a href="contact.html" data-transition>お問い合わせ</a>
+      <a href="privacy.html" data-transition>プライバシーポリシー</a>
     </nav>
   </div>
   <div class="copy">© 2026 桜運輸株式会社</div>
