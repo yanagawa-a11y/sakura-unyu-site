@@ -56,8 +56,12 @@
 .cform .note{text-align:center;font-size:14.5px;color:#3c443f;margin-bottom:46px}
 .cform label{display:block;font-size:14px;font-weight:700;margin:26px 0 8px}
 .cform label .req{color:#c0392b;font-size:12px;margin-left:6px}
-.cform input[type=text],.cform input[type=tel],.cform input[type=email],.cform textarea{width:100%;border:1.5px solid #d8d7cd;border-radius:10px;background:#fff;padding:14px 16px;font-family:var(--sans);font-size:15px;transition:border-color .3s,box-shadow .3s}
-.cform input:focus,.cform textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(45,106,79,.14)}
+.cform label .opt{color:var(--gray);font-size:11.5px;font-weight:500;margin-left:8px}
+.cform input[type=text],.cform input[type=tel],.cform input[type=email],.cform select,.cform textarea{width:100%;border:1.5px solid #d8d7cd;border-radius:10px;background:#fff;padding:14px 16px;font-family:var(--sans);font-size:15px;transition:border-color .3s,box-shadow .3s}
+.cform select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d6a4f' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:16px;cursor:pointer;color:var(--ink)}
+.cform select:invalid{color:var(--gray)}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(45,106,79,.14)}
+.noconfirm{text-align:center;font-size:12.5px;color:var(--gray);margin-top:30px}
 .cform textarea{min-height:180px;resize:vertical}
 .privacy{margin-top:44px;border:1.5px solid #d8d7cd;border-radius:12px;background:#fff;max-height:260px;overflow-y:auto;padding:24px 26px;font-size:12.5px;color:#4a524d;line-height:1.9}
 .privacy h3{font-size:13.5px;color:var(--green-deep);margin:18px 0 6px}
@@ -114,14 +118,32 @@
     <form class="cform rev" id="cform">
       <p class="note">ご覧いただきありがとうございます。<br>2営業日以内にご連絡差し上げます。<br>※営業メールは申し訳ございませんが、お断りしております。</p>
 
-      <label>お名前<span class="req">*</span></label>
-      <input type="text" name="name" required>
+      <label>お問い合わせ種別<span class="req">*</span></label>
+      <select name="kind" required>
+        <option value="" disabled selected>選択してください</option>
+        <option>輸送のご依頼について</option>
+        <option>輸送のお見積りについて</option>
+        <option>採用・応募について</option>
+        <option>その他</option>
+      </select>
 
-      <label>電話番号<span class="req">*</span></label>
-      <input type="tel" name="tel" required>
+      <label>貴社名<span class="opt">※個人・求職者の方は空欄で結構です</span></label>
+      <input type="text" name="company" autocomplete="organization">
+
+      <label>お名前<span class="req">*</span></label>
+      <input type="text" name="name" required autocomplete="name">
+
+      <label>フリガナ<span class="req">*</span></label>
+      <input type="text" name="furigana" required>
+
+      <label>部署・役職</label>
+      <input type="text" name="dept" autocomplete="organization-title">
 
       <label>メールアドレス<span class="req">*</span></label>
-      <input type="email" name="email" required>
+      <input type="email" name="email" required autocomplete="email">
+
+      <label>電話番号<span class="req">*</span></label>
+      <input type="tel" name="tel" required autocomplete="tel">
 
       <label>お問い合わせ内容<span class="req">*</span></label>
       <textarea name="body" required></textarea>
@@ -156,6 +178,7 @@
       <!-- スパム対策用の隠しフィールド（人間は入力しない） -->
       <div class="hp" aria-hidden="true"><label>この欄は入力しないでください<input type="text" name="_hp" tabindex="-1" autocomplete="off"></label></div>
 
+      <p class="noconfirm">※確認画面は表示されません。内容をご確認のうえ送信してください。</p>
       <div class="submitrow">
         <button type="submit" class="btn">入力内容を送信する</button>
       </div>
@@ -203,12 +226,16 @@
 const GFORM = {
   // ▼▼ 要設定：Googleフォームの回答受付URL（末尾は /formResponse）
   action: 'https://docs.google.com/forms/d/e/__RESPONSE_ID__/formResponse',
-  // ▼▼ 要設定：各入力欄に対応する entry ID
+  // ▼▼ 要設定：各入力欄に対応する entry ID（8項目）
   fields: {
-    name:  'entry.__NAME__',   // お名前
-    tel:   'entry.__TEL__',    // 電話番号
-    email: 'entry.__EMAIL__',  // メールアドレス
-    body:  'entry.__BODY__'    // お問い合わせ内容
+    kind:     'entry.__KIND__',     // お問い合わせ種別
+    company:  'entry.__COMPANY__',  // 貴社名
+    name:     'entry.__NAME__',     // お名前
+    furigana: 'entry.__FURIGANA__', // フリガナ
+    dept:     'entry.__DEPT__',     // 部署・役職
+    email:    'entry.__EMAIL__',    // メールアドレス
+    tel:      'entry.__TEL__',      // 電話番号
+    body:     'entry.__BODY__'      // お問い合わせ内容
   }
 };
 
@@ -234,10 +261,9 @@ cform.addEventListener('submit', async e => {
   }
 
   const data = new URLSearchParams();
-  data.append(GFORM.fields.name,  cform.elements['name'].value);
-  data.append(GFORM.fields.tel,   cform.elements['tel'].value);
-  data.append(GFORM.fields.email, cform.elements['email'].value);
-  data.append(GFORM.fields.body,  cform.elements['body'].value);
+  for (const [key, entry] of Object.entries(GFORM.fields)) {
+    data.append(entry, cform.elements[key].value);
+  }
 
   submitBtn.disabled = true;
   submitBtn.textContent = '送信中…';
