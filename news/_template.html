@@ -1,20 +1,37 @@
 <!DOCTYPE html>
+<!-- ============================================================
+  お知らせ記事テンプレート
+  ============================================================
+  【使い方】※詳細は sakura-unyu-ops リポジトリの docs/運用ガイド.md
+  1. このファイルをコピーして「YYYY-MM-DD-内容.html」にリネーム
+     例：2026-08-01-summer-holiday.html
+  2. ファイル内の ◆◆ で始まる箇所（8種類）をすべて書き換える
+     ◆◆TITLE◆◆   … 記事タイトル
+     ◆◆DESC◆◆    … 記事の要約（80字前後）
+     ◆◆FILE◆◆    … このファイル名（例：2026-08-01-summer-holiday.html）
+     ◆◆DATE◆◆    … 日付 YYYY-MM-DD（例：2026-08-01）
+     ◆◆DATEJP◆◆  … 表示用日付 YYYY.MM.DD（例：2026.08.01）
+     ◆◆IMG◆◆     … OGP画像（例：slide2.jpg ※assets/img/内のファイル名）
+     ◆◆BODY◆◆    … 本文（<p>段落</p>を並べる）
+     ◆◆CAT◆◆     … カテゴリ（例：お知らせ／採用／安全）
+  3. news.html の一覧、index.html の新着欄、sitemap.xml にも追記
+  ============================================================ -->
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="桜運輸株式会社の公式ホームページを公開しました。海上コンテナ輸送を中心とした当社の事業や取り組みをご紹介しています。">
+<meta name="description" content="◆◆DESC◆◆">
 <link rel="icon" type="image/png" href="../assets/img/logo_sakura.png">
-<title>ホームページを公開しました｜お知らせ｜桜運輸株式会社</title>
-<link rel="canonical" href="https://www.sakuraunyu.com/news/2025-03-10-website-open.html">
+<title>◆◆TITLE◆◆｜お知らせ｜桜運輸株式会社</title>
+<link rel="canonical" href="https://www.sakuraunyu.com/news/◆◆FILE◆◆">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:site_name" content="桜運輸株式会社">
-<meta property="og:title" content="ホームページを公開しました｜桜運輸株式会社">
-<meta property="og:description" content="桜運輸株式会社の公式ホームページを公開しました。">
-<meta property="og:url" content="https://www.sakuraunyu.com/news/2025-03-10-website-open.html">
-<meta property="og:image" content="https://www.sakuraunyu.com/assets/img/slide2.jpg">
-<meta property="article:published_time" content="2025-03-10">
+<meta property="og:title" content="◆◆TITLE◆◆｜桜運輸株式会社">
+<meta property="og:description" content="◆◆DESC◆◆">
+<meta property="og:url" content="https://www.sakuraunyu.com/news/◆◆FILE◆◆">
+<meta property="og:image" content="https://www.sakuraunyu.com/assets/img/◆◆IMG◆◆">
+<meta property="article:published_time" content="◆◆DATE◆◆">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,18 +41,18 @@
 {
   "@context": "https://schema.org",
   "@type": "NewsArticle",
-  "headline": "ホームページを公開しました",
-  "datePublished": "2025-03-10",
-  "dateModified": "2025-03-10",
-  "image": ["https://www.sakuraunyu.com/assets/img/slide2.jpg"],
+  "headline": "◆◆TITLE◆◆",
+  "datePublished": "◆◆DATE◆◆",
+  "dateModified": "◆◆DATE◆◆",
+  "image": ["https://www.sakuraunyu.com/assets/img/◆◆IMG◆◆"],
   "author": {"@type": "Organization", "name": "桜運輸株式会社", "url": "https://www.sakuraunyu.com/"},
   "publisher": {
     "@type": "Organization",
     "name": "桜運輸株式会社",
     "logo": {"@type": "ImageObject", "url": "https://www.sakuraunyu.com/assets/img/logo_sakura.png"}
   },
-  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.sakuraunyu.com/news/2025-03-10-website-open.html"},
-  "description": "桜運輸株式会社の公式ホームページを公開しました。"
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.sakuraunyu.com/news/◆◆FILE◆◆"},
+  "description": "◆◆DESC◆◆"
 }
 </script>
 <script type="application/ld+json">
@@ -45,7 +62,7 @@
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://www.sakuraunyu.com/"},
     {"@type": "ListItem", "position": 2, "name": "お知らせ", "item": "https://www.sakuraunyu.com/news.html"},
-    {"@type": "ListItem", "position": 3, "name": "ホームページを公開しました", "item": "https://www.sakuraunyu.com/news/2025-03-10-website-open.html"}
+    {"@type": "ListItem", "position": 3, "name": "◆◆TITLE◆◆", "item": "https://www.sakuraunyu.com/news/◆◆FILE◆◆"}
   ]
 }
 </script>
@@ -102,16 +119,18 @@
 <section class="section">
   <div class="wrap">
     <article class="article rev">
-      <p class="crumbs"><a href="../index.html" data-transition>ホーム</a> ＞ <a href="../news.html" data-transition>お知らせ</a> ＞ ホームページを公開しました</p>
+      <p class="crumbs"><a href="../index.html" data-transition>ホーム</a> ＞ <a href="../news.html" data-transition>お知らせ</a> ＞ ◆◆TITLE◆◆</p>
       <div class="meta">
-        <time datetime="2025-03-10">2025.03.10</time>
-        <span class="cat">お知らせ</span>
+        <time datetime="◆◆DATE◆◆">◆◆DATEJP◆◆</time>
+        <span class="cat">◆◆CAT◆◆</span>
       </div>
-      <h1>ホームページを公開しました</h1>
+      <h1>◆◆TITLE◆◆</h1>
       <div class="body">
-        <p>このたび、桜運輸株式会社の公式ホームページを公開いたしました。</p>
-        <p>当社は昭和42年の創業以来、印刷機械の全国輸送からスタートし、現在では海上コンテナを中心に、工作機械などの幅広い貨物のトレーラー輸送を手がけております。本ホームページでは、当社の事業内容や保有車両、安全への取り組み、採用情報などをご紹介しています。</p>
-        <p>今後、お客様や求職者の皆様に役立つ情報を随時発信してまいります。引き続き、桜運輸株式会社をよろしくお願い申し上げます。</p>
+        <!-- ◆◆BODY◆◆ ここから本文。<p>〜</p>を必要なだけ並べる。
+             画像を入れる場合：<img src="../assets/img/ファイル名.jpg" alt="説明" loading="lazy"> -->
+        <p>本文の1段落目。</p>
+        <p>本文の2段落目。</p>
+        <!-- ◆◆BODY◆◆ ここまで -->
       </div>
       <div class="back">
         <a class="btn btn--line" href="../news.html" data-transition>お知らせ一覧へ戻る</a>

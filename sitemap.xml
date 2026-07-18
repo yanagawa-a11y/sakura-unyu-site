@@ -1,69 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ▼ドメイン確定後、https://sakura-unyu.co.jp を実ドメインに一括置換してください -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sakura-unyu.co.jp/</loc>
+    <loc>https://www.sakuraunyu.com/</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sakura-unyu.co.jp/our_business.html</loc>
+    <loc>https://www.sakuraunyu.com/our_business.html</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sakura-unyu.co.jp/vehicle.html</loc>
+    <loc>https://www.sakuraunyu.com/vehicle.html</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sakura-unyu.co.jp/company.html</loc>
+    <loc>https://www.sakuraunyu.com/company.html</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sakura-unyu.co.jp/recruit.html</loc>
+    <loc>https://www.sakuraunyu.com/recruit.html</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sakura-unyu.co.jp/safety.html</loc>
+    <loc>https://www.sakuraunyu.com/safety.html</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sakura-unyu.co.jp/reason.html</loc>
+    <loc>https://www.sakuraunyu.com/reason.html</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sakura-unyu.co.jp/news.html</loc>
+    <loc>https://www.sakuraunyu.com/news.html</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sakura-unyu.co.jp/contact.html</loc>
+    <loc>https://www.sakuraunyu.com/contact.html</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sakura-unyu.co.jp/privacy.html</loc>
+    <loc>https://www.sakuraunyu.com/privacy.html</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <!-- ▼お知らせ記事：新規記事を追加したら、この形式で1行ずつ追記してください -->
   <url>
-    <loc>https://sakura-unyu.co.jp/news/2025-03-10-website-open.html</loc>
+    <loc>https://www.sakuraunyu.com/news/2025-03-10-website-open.html</loc>
     <lastmod>2025-03-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>

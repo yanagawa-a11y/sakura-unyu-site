@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# ▼ドメイン確定後、実ドメインに置き換えてください
-Sitemap: https://sakura-unyu.co.jp/sitemap.xml
+Sitemap: https://www.sakuraunyu.com/sitemap.xml
