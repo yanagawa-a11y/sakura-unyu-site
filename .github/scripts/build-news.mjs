@@ -144,6 +144,7 @@ function articleHtml(item) {
 .article .meta time{font-family:var(--en);font-size:14px;letter-spacing:.08em;color:var(--gray)}
 .article .meta .cat{font-size:12px;font-weight:700;color:var(--green);background:rgba(45,106,79,.1);border-radius:999px;padding:3px 16px}
 .article h1{font-size:clamp(22px,3vw,30px);font-weight:700;line-height:1.7;color:var(--green-deep);margin-bottom:30px;padding-bottom:26px;border-bottom:2px solid #e3e2da}
+.article .lead{display:block;width:100%;height:auto;border-radius:12px;margin:0 0 34px}
 .article .body{font-size:15px;color:#3c443f;line-height:2.05}
 .article .body p{margin:0 0 1.5em}
 .article .body img{border-radius:12px;margin:12px 0 28px;max-width:100%;height:auto}
@@ -195,7 +196,7 @@ function articleHtml(item) {
         <span class="cat">${esc(cat)}</span>
       </div>
       <h1>${esc(title)}</h1>
-      <div class="body">
+${item.thumbnail?.url ? `      <img class="lead" src="${esc(item.thumbnail.url)}" alt="${esc(title)}"${item.thumbnail.width ? ` width="${item.thumbnail.width}" height="${item.thumbnail.height}"` : ''} loading="eager">\n` : ''}      <div class="body">
 ${body}
       </div>
       <div class="back">
