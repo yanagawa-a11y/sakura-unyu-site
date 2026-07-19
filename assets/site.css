@@ -45,10 +45,10 @@ ul{list-style:none}
 .gnav .cta span{position:relative;z-index:1}
 .gnav .cta::before{content:"";position:absolute;inset:0;background:var(--green-deep);transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.22,1,.36,1)}
 .gnav .cta:hover::before{transform:scaleX(1);transform-origin:left}
-@media(max-width:1080px){.gnav a:not(.cta){display:none}}
+@media(max-width:1080px){.gnav a:not(.cta){display:none}.menu-btn{display:grid}}
 
 /* ===== ハンバーガーメニュー（全画面ドロワー） ===== */
-.menu-btn{width:76px;height:100%;flex:0 0 auto;background:var(--green-deep);border:none;cursor:pointer;position:relative;z-index:210;display:grid;place-items:center}
+.menu-btn{width:76px;height:100%;flex:0 0 auto;background:var(--green-deep);border:none;cursor:pointer;position:relative;z-index:210;display:none;place-items:center}
 .menu-btn .bars{width:26px;height:18px;position:relative}
 .menu-btn .bars span{position:absolute;left:0;width:100%;height:2px;background:#fff;border-radius:2px;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .25s,top .35s}
 .menu-btn .bars span:nth-child(1){top:0}
