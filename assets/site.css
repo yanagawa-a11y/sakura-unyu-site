@@ -45,7 +45,7 @@ ul{list-style:none}
 .gnav .cta span{position:relative;z-index:1}
 .gnav .cta::before{content:"";position:absolute;inset:0;background:var(--green-deep);transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.22,1,.36,1)}
 .gnav .cta:hover::before{transform:scaleX(1);transform-origin:left}
-@media(max-width:1080px){.gnav a:not(.cta){display:none}.menu-btn{display:grid}}
+@media(max-width:1080px){.gnav a:not(.cta){display:none}}
 
 /* ===== ハンバーガーメニュー（全画面ドロワー） ===== */
 .menu-btn{width:76px;height:100%;flex:0 0 auto;background:var(--green-deep);border:none;cursor:pointer;position:relative;z-index:210;display:none;place-items:center}
@@ -57,6 +57,9 @@ ul{list-style:none}
 body.menu-open .menu-btn .bars span:nth-child(1){top:8px;transform:rotate(45deg)}
 body.menu-open .menu-btn .bars span:nth-child(2){opacity:0}
 body.menu-open .menu-btn .bars span:nth-child(3){top:8px;transform:rotate(-45deg)}
+/* PCでは非表示。1080px以下（タブレット・スマホ）でのみ表示する。
+   この上書きは .menu-btn の display:none より後に書くこと（メディアクエリは詳細度を上げないため） */
+@media(max-width:1080px){.menu-btn{display:grid}}
 .mnav{position:fixed;inset:0;z-index:205;background:var(--green-deep);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .45s}
 body.menu-open .mnav{opacity:1;pointer-events:auto}
 .mnav nav{display:grid;grid-template-columns:repeat(2,auto);gap:30px 72px;font-size:18px;font-weight:700;color:#fff;letter-spacing:.06em}
