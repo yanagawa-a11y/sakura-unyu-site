@@ -60,11 +60,13 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  <!-- ▼お知らせ記事：新規記事を追加したら、この形式で1行ずつ追記してください -->
+  <!-- ▼お知らせ記事：microCMSから自動生成されます。手動編集しないでください -->
+  <!-- NEWS_URLS:START -->
   <url>
     <loc>https://www.sakuraunyu.com/news/2025-03-10-website-open.html</loc>
     <lastmod>2025-03-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <!-- NEWS_URLS:END -->
 </urlset>

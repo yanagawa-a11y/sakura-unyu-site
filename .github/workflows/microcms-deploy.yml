@@ -1,0 +1,45 @@
+name: お知らせ自動反映（microCMS → GitHub Pages）
+
+# 発火条件：
+#  - repository_dispatch: microCMS の Webhook（公開/更新/削除）から
+#  - workflow_dispatch  : 手動実行（GitHubのActions画面のボタン）
+on:
+  repository_dispatch:
+    types: [microcms-publish]
+  workflow_dispatch:
+
+# 同時実行を1本に制限（連続公開時の競合を防ぐ）
+concurrency:
+  group: news-build
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # 生成HTMLをmainにcommitするため
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: microCMS取得 → 静的HTML生成
+        env:
+          MICROCMS_SERVICE_ID: ${{ secrets.MICROCMS_SERVICE_ID }}
+          MICROCMS_API_KEY:    ${{ secrets.MICROCMS_API_KEY }}
+        run: node .github/scripts/build-news.mjs
+
+      - name: 変更があればcommit & push（→ Pagesが自動再デプロイ）
+        run: |
+          git config user.name  "sakura-news-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "変更なし。commitをスキップします。"
+          else
+            git add -A
+            git commit -m "お知らせ自動更新（microCMS）"
+            git push
+          fi
