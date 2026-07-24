@@ -11,10 +11,12 @@
 
 | 項目 | 値 |
 |---|---|
-| ホスティング | GitHub Pages（`yanagawa-a11y/sakura-unyu-site`） |
+| ホスティング | GitHub Pages（`mirai-logistics/sakura-unyu-site`） |
 | 公開URL | https://www.sakuraunyu.com/ |
 | デプロイ元 | `main` ブランチのルート |
 | 反映時間 | push後 約30秒〜1分 |
+
+リポジトリは 2026-07-23 に個人アカウント（`yanagawa-a11y`）から `mirai-logistics` Org へ移管済み。旧URLへのアクセスはリダイレクトされる。
 
 `main` が本番デプロイブランチのため、**作業ブランチを切らず `main` へ直接コミットする運用**。
 プッシュ前に必ず動作確認すること（プレビュー環境は無い）。
